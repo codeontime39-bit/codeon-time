@@ -1,9 +1,15 @@
+"use client";
+
+import { useEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
 const principles = [
   {
     num: "01",
     title: "Excellent, not just good",
     italic: "Excellent,",
-    body: "Acceptable isn't the goal. Every line, every spacing decision, every animation gets the same scrutiny — even if no one else would notice.",
+    body: "Acceptable isn't the goal. Every line, every spacing decision, every animation gets the same scrutiny - even if no one else would notice.",
   },
   {
     num: "02",
@@ -15,19 +21,19 @@ const principles = [
     num: "03",
     title: "No time to lose",
     italic: "time",
-    body: "Your time is valuable. So is ours. We won't promise the impossible — but what we promise, we deliver, on the day we said we would.",
+    body: "Your time is valuable. So is ours. We won't promise the impossible - but what we promise, we deliver, on the day we said we would.",
   },
   {
     num: "04",
     title: "It belongs to you",
     italic: "belongs",
-    body: "You own everything we make for you — code, design, components, ideas. No lock-ins, no proprietary middleware. Your independence comes first.",
+    body: "You own everything we make for you - code, design, components, ideas. No lock-ins, no proprietary middleware. Your independence comes first.",
   },
   {
     num: "05",
     title: "All is said",
     italic: "said",
-    body: "Honest collaboration means anyone — you, us, your team — can speak to anything at any time. All ideas are welcome. The best one wins.",
+    body: "Honest collaboration means anyone - you, us, your team - can speak to anything at any time. All ideas are welcome. The best one wins.",
   },
   {
     num: "06",
@@ -50,10 +56,37 @@ function formatTitle(title: string, italic: string) {
 }
 
 export default function Manifesto() {
+  const container = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+    let ctx = gsap.context(() => {
+      const blocks = gsap.utils.toArray(".principle-block");
+      
+      gsap.fromTo(
+        blocks as HTMLElement[],
+        { y: 80, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 1.2,
+          stagger: 0.15,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: container.current,
+            start: "top 75%",
+          },
+        }
+      );
+    }, container);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section id="process" className="px-8 py-32 reveal">
-      <div className="grid md:grid-cols-[100px_1fr_1fr] gap-8 mb-20">
-        <div className="text-[12px] tracking-[0.1em] text-muted">03 — Approach</div>
+    <section id="process" className="px-8 py-32" ref={container}>
+      <div className="grid md:grid-cols-[100px_1fr_1fr] gap-8 mb-20 principle-block">
+        <div className="text-[12px] tracking-[0.1em] text-muted">03 - Approach</div>
         <div className="text-[12px] tracking-[0.1em] uppercase text-muted">
           How we work
         </div>
@@ -68,7 +101,7 @@ export default function Manifesto() {
         <div className="hidden md:block" />
         <div className="grid md:grid-cols-2 gap-x-12 gap-y-15" style={{ rowGap: "60px" }}>
           {principles.map((p) => (
-            <div key={p.num} className="pt-6 border-t border-line">
+            <div key={p.num} className="pt-6 border-t border-line principle-block">
               <div className="text-[12px] text-muted mb-6">{p.num}</div>
               <h3 className="font-serif text-3xl leading-tight tracking-[-0.02em] mb-3 font-normal">
                 {formatTitle(p.title, p.italic)}

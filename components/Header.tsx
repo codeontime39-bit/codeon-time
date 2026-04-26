@@ -1,9 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Magnetic from "./Magnetic";
 
 export default function Header() {
-  const [time, setTime] = useState("—:—:—");
+  const [time, setTime] = useState("-:-:-");
 
   useEffect(() => {
     const tick = () => {
@@ -25,7 +26,6 @@ export default function Header() {
         className="brand font-serif text-[26px] leading-none tracking-[-0.01em] no-underline text-white"
       >
         code on <em className="italic">time</em>
-        <sup className="brand-r">®</sup>
       </a>
 
       <nav className="hidden md:flex gap-9">
@@ -35,28 +35,31 @@ export default function Header() {
           { label: "Approach", href: "#process" },
           { label: "Contact", href: "#contact" },
         ].map((item) => (
-          <a
-            key={item.href}
-            href={item.href}
-            className="text-[13px] no-underline text-white relative py-1 group"
-          >
-            {item.label}
-            <span className="absolute bottom-0 left-0 right-0 h-px bg-white scale-x-0 origin-right group-hover:scale-x-100 group-hover:origin-left transition-transform duration-500" />
-          </a>
+          <Magnetic key={item.href} strength={0.15}>
+            <a
+              href={item.href}
+              className="inline-block text-[13px] no-underline text-white relative py-1 group"
+            >
+              {item.label}
+              <span className="absolute bottom-0 left-0 right-0 h-px bg-white scale-x-0 origin-right group-hover:scale-x-100 group-hover:origin-left transition-transform duration-500" />
+            </a>
+          </Magnetic>
         ))}
       </nav>
 
       <div className="flex items-center gap-6">
         <span className="hidden md:inline text-[13px] tabular-nums">{time}</span>
-        <a
-          href="#contact"
-          className="text-[12px] no-underline text-white px-[18px] py-[10px] border border-current rounded-full inline-flex items-center gap-2 transition-colors duration-500 hover:bg-white hover:text-ink group"
-        >
-          Start a project
-          <span className="inline-block transition-transform duration-500 group-hover:translate-x-1">
-            →
-          </span>
-        </a>
+        <Magnetic strength={0.2}>
+          <a
+            href="#contact"
+            className="text-[12px] no-underline text-white px-[18px] py-[10px] border border-current rounded-full inline-flex items-center gap-2 transition-colors duration-500 hover:bg-white hover:text-ink group"
+          >
+            Start a project
+            <span className="inline-block transition-transform duration-500 group-hover:translate-x-1">
+              →
+            </span>
+          </a>
+        </Magnetic>
       </div>
 
       <style jsx>{`

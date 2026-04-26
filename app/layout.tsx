@@ -16,7 +16,7 @@ const instrument = Instrument_Serif({
 });
 
 export const metadata: Metadata = {
-  title: "Code On Time® — Freelance studio",
+  title: "Code On Time - Freelance studio",
   description:
     "A two-person freelance studio building digital products that ship on time. Web design, development, and design systems.",
   keywords: [
@@ -27,9 +27,9 @@ export const metadata: Metadata = {
     "Bengaluru",
   ],
   openGraph: {
-    title: "Code On Time® — Freelance studio",
+    title: "Code On Time - Freelance studio",
     description:
-      "We build digital products that ship — clean, fast, and on time.",
+      "We build digital products that ship - clean, fast, and on time.",
     type: "website",
   },
 };
@@ -41,7 +41,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${inter.variable} ${instrument.variable}`}>
-      <body className="font-sans">{children}</body>
+      <body className="font-sans">
+        <div className="noise-overlay" />
+        {children}
+      </body>
     </html>
   );
 }

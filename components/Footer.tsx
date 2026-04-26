@@ -38,7 +38,6 @@ export default function Footer() {
       <div className="grid grid-cols-2 md:grid-cols-[2fr_1fr_1fr_1fr] gap-8 items-start">
         <div className="footer-mark font-serif leading-none tracking-[-0.02em] col-span-2 md:col-span-1">
           code on <em className="italic">time</em>
-          <sup className="footer-r">®</sup>
         </div>
         <div>
           <h5 className="text-[11px] tracking-[0.15em] uppercase text-white/40 mb-5 font-medium">
@@ -59,17 +58,17 @@ export default function Footer() {
             Contact
           </h5>
           <a
-            href="mailto:hello@codeontime.dev"
+            href="mailto:codeontime39@gmail.com"
             className="block text-[15px] py-1 text-bg no-underline hover:text-accent"
           >
-            hello@codeontime.dev
+            codeontime39@gmail.com
           </a>
-          <a
+          {/* <a
             href="mailto:partner@codeontime.dev"
             className="block text-[15px] py-1 text-bg no-underline hover:text-accent"
           >
             partner@codeontime.dev
-          </a>
+          </a> */}
         </div>
         <div>
           <h5 className="text-[11px] tracking-[0.15em] uppercase text-white/40 mb-5 font-medium">
@@ -90,7 +89,7 @@ export default function Footer() {
       <div className="mt-20 pt-7 border-t border-white/10 flex gap-12 flex-wrap">
         {cities.map((c) => (
           <div key={c.id} className="font-serif text-[22px] italic flex items-baseline gap-3">
-            <span className="tabular-nums">{times[c.id] || "—:—:—"}</span>
+            <span className="tabular-nums">{times[c.id] || "-:-:-"}</span>
             <span className="font-sans not-italic text-[11px] tracking-[0.15em] uppercase text-white/50">
               {c.name}
             </span>
@@ -99,8 +98,8 @@ export default function Footer() {
       </div>
 
       <div className="mt-7 pt-7 border-t border-white/10 flex justify-between flex-wrap gap-4 text-[12px] text-white/40">
-        <span>© 2026 Code On Time®. Built by hand.</span>
-        <span>Made in Bengaluru, shipped worldwide.</span>
+        <span>2026 Code On Time. Built by hand.</span>
+        <span>Made in India, shipped worldwide.</span>
       </div>
 
       <style jsx>{`

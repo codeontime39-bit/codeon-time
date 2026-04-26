@@ -17,8 +17,7 @@ export default function Loader() {
       }`}
     >
       <div className="loader-mark font-serif leading-none tracking-[-0.02em]">
-        code on <em className="italic">time</em>
-        <sup className="loader-r">®</sup>
+       code on <em className="italic">time</em>
       </div>
       <div className="w-[280px] h-px bg-line mt-9 relative overflow-hidden">
         <div className="absolute left-0 top-0 h-full w-0 bg-ink animate-fillBar" />
