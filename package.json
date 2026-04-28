@@ -1,6 +1,6 @@
 {
-  "name": "code-on-time",
-  "version": "0.1.0",
+  "name": "blue-black-beige",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev",

@@ -34,89 +34,109 @@ export default function Footer() {
   }, []);
 
   return (
-    <footer className="bg-ink text-bg px-8 pt-20 pb-7">
-      <div className="grid grid-cols-2 md:grid-cols-[2fr_1fr_1fr_1fr] gap-8 items-start">
-        <div className="footer-mark font-serif leading-none tracking-[-0.02em] col-span-2 md:col-span-1">
-          code on <em className="italic">time</em>
+    <footer className="relative bg-ink text-beige pt-24 pb-10">
+      <div className="max-w-[1600px] mx-auto px-8">
+        {/* The three colour blocks at the very top */}
+        <div className="grid grid-cols-3 gap-px mb-16 h-2">
+          <div className="bg-electric" />
+          <div className="bg-beige" />
+          <div className="bg-beige-dark" />
         </div>
-        <div>
-          <h5 className="text-[11px] tracking-[0.15em] uppercase text-white/40 mb-5 font-medium">
-            Studio
-          </h5>
-          <a href="#about" className="block text-[15px] py-1 text-bg no-underline hover:text-accent">
-            About
-          </a>
-          <a href="#work" className="block text-[15px] py-1 text-bg no-underline hover:text-accent">
-            Work
-          </a>
-          <a href="#process" className="block text-[15px] py-1 text-bg no-underline hover:text-accent">
-            Approach
-          </a>
-        </div>
-        <div>
-          <h5 className="text-[11px] tracking-[0.15em] uppercase text-white/40 mb-5 font-medium">
-            Contact
-          </h5>
-          <a
-            href="mailto:codeontime39@gmail.com"
-            className="block text-[15px] py-1 text-bg no-underline hover:text-accent"
-          >
-            codeontime39@gmail.com
-          </a>
-          {/* <a
-            href="mailto:partner@codeontime.dev"
-            className="block text-[15px] py-1 text-bg no-underline hover:text-accent"
-          >
-            partner@codeontime.dev
-          </a> */}
-        </div>
-        <div>
-          <h5 className="text-[11px] tracking-[0.15em] uppercase text-white/40 mb-5 font-medium">
-            Networks
-          </h5>
-          <a href="#" className="block text-[15px] py-1 text-bg no-underline hover:text-accent">
-            LinkedIn ↗
-          </a>
-          <a href="#" className="block text-[15px] py-1 text-bg no-underline hover:text-accent">
-            Instagram ↗
-          </a>
-          <a href="#" className="block text-[15px] py-1 text-bg no-underline hover:text-accent">
-            GitHub ↗
-          </a>
-        </div>
-      </div>
 
-      <div className="mt-20 pt-7 border-t border-white/10 flex gap-12 flex-wrap">
-        {cities.map((c) => (
-          <div key={c.id} className="font-serif text-[22px] italic flex items-baseline gap-3">
-            <span className="tabular-nums">{times[c.id] || "-:-:-"}</span>
-            <span className="font-sans not-italic text-[11px] tracking-[0.15em] uppercase text-white/50">
-              {c.name}
-            </span>
+        {/* Massive BBB wordmark */}
+        <div className="border-b border-beige/15 pb-12 mb-12">
+          <h2
+            className="font-serif font-normal leading-[0.85] tracking-tightest text-beige"
+            style={{ fontSize: "clamp(64px, 16vw, 280px)" }}
+          >
+            Blue Black <span className="italic text-beige-dark">Beige</span>
+          </h2>
+          <div className="flex items-end justify-between flex-wrap gap-4 mt-6">
+            <p className="font-mono text-[11px] tracking-[0.25em] uppercase text-beige/50">
+              Design &amp; development studio · Est. 2026
+            </p>
+            <p className="font-mono text-[11px] tracking-[0.25em] uppercase text-beige/50">
+              Made on planet earth
+            </p>
           </div>
-        ))}
-      </div>
+        </div>
 
-      <div className="mt-7 pt-7 border-t border-white/10 flex justify-between flex-wrap gap-4 text-[12px] text-white/40">
-        <span>2026 Code On Time. Built by hand.</span>
-        <span>Made in India, shipped worldwide.</span>
-      </div>
+        {/* Link grid */}
+        <div className="grid grid-cols-12 gap-6 mb-16">
+          <div className="col-span-12 md:col-span-5">
+            <p className="text-base leading-relaxed text-beige/70 max-w-md">
+              A two-person studio working at the intersection of design and
+              engineering. We take a small number of briefs each quarter and do
+              them properly.
+            </p>
+          </div>
 
-      <style jsx>{`
-        .footer-mark {
-          font-size: clamp(40px, 6vw, 80px);
-        }
-        .footer-r {
-          font-family: var(--font-inter), sans-serif;
-          font-size: 0.22em;
-          font-style: normal;
-          font-weight: 400;
-          vertical-align: top;
-          margin-left: 4px;
-          top: 0.3em;
-          position: relative;
-        }
-      `}</style>
+          <div className="col-span-6 md:col-span-2">
+            <h5 className="font-mono text-[10px] tracking-[0.3em] uppercase text-beige/40 mb-5">
+              Studio
+            </h5>
+            <ul className="space-y-3 text-sm">
+              {["Work", "About", "Approach", "Contact"].map((l) => (
+                <li key={l}>
+                  <a href={`#${l.toLowerCase()}`} className="link-line text-beige/80 hover:text-beige">
+                    {l}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="col-span-6 md:col-span-2">
+            <h5 className="font-mono text-[10px] tracking-[0.3em] uppercase text-beige/40 mb-5">
+              Reach us
+            </h5>
+            <ul className="space-y-3 text-sm">
+              <li>
+                <a href="mailto:nayan@blueblackbeige.in" className="link-line text-beige/80 hover:text-beige">
+                  nayan@blueblackbeige.in
+                </a>
+              </li>
+              <li>
+                <a href="mailto:alok@blueblackbeige.in" className="link-line text-beige/80 hover:text-beige">
+                  alok@blueblackbeige.in
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <div className="col-span-12 md:col-span-3">
+            <h5 className="font-mono text-[10px] tracking-[0.3em] uppercase text-beige/40 mb-5">
+              Networks
+            </h5>
+            <ul className="space-y-3 text-sm">
+              <li><a href="#" className="link-line text-beige/80 hover:text-beige">LinkedIn ↗</a></li>
+              <li><a href="#" className="link-line text-beige/80 hover:text-beige">Instagram ↗</a></li>
+              <li><a href="#" className="link-line text-beige/80 hover:text-beige">GitHub ↗</a></li>
+            </ul>
+          </div>
+        </div>
+
+        {/* World clocks */}
+        <div className="pt-8 border-t border-beige/10 flex gap-12 flex-wrap mb-12">
+          {cities.map((c) => (
+            <div
+              key={c.id}
+              className="font-serif text-[22px] italic flex items-baseline gap-3"
+            >
+              <span className="tabular text-beige">{times[c.id] || "—:—:—"}</span>
+              <span className="font-sans not-italic text-[10px] tracking-[0.25em] uppercase text-beige/50">
+                {c.name}
+              </span>
+            </div>
+          ))}
+        </div>
+
+        {/* Bottom row */}
+        <div className="pt-8 border-t border-beige/10 flex justify-between flex-wrap gap-4 text-[11px] text-beige/40 font-mono tracking-wider">
+          <span>© 2026 Blue Black Beige. All rights reserved.</span>
+          <span>Made in Bengaluru, shipped worldwide.</span>
+        </div>
+      </div>
     </footer>
   );
 }

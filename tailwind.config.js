@@ -7,36 +7,33 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        bg: "#FAFAF7",
-        ink: "#1A1918",
-        muted: "#8A8985",
-        line: "#E5E4DF",
-        accent: "#FF4F19",
+        // The three pillars of the brand
+        beige: {
+          DEFAULT: "#E8DCC4",
+          light: "#F2EADB",
+          dark: "#D4C4A0",
+          paper: "#F5EFE2",
+        },
+        ink: {
+          DEFAULT: "#0A0A0A",
+          soft: "#1A1A1A",
+          mid: "#2D2D2D",
+          muted: "#5A5A5A",
+        },
+        electric: {
+          DEFAULT: "#2952CC",
+          deep: "#1E3A8A",
+          bright: "#3B6FE8",
+          dark: "#142654",
+        },
       },
       fontFamily: {
-        sans: ["var(--font-inter)", "system-ui", "sans-serif"],
-        serif: ["var(--font-instrument)", "Georgia", "serif"],
+        serif: ["var(--font-serif)", "Georgia", "serif"],
+        sans: ["var(--font-sans)", "system-ui", "sans-serif"],
+        mono: ["var(--font-mono)", "monospace"],
       },
-      animation: {
-        marquee: "marquee 30s linear infinite",
-        rise: "rise 1.1s cubic-bezier(0.7, 0, 0.3, 1) forwards",
-        fillBar: "fillBar 1.6s cubic-bezier(0.7, 0, 0.3, 1) forwards",
-        scrollHint: "scrollHint 2.4s infinite",
-      },
-      keyframes: {
-        marquee: {
-          to: { transform: "translateX(-50%)" },
-        },
-        rise: {
-          to: { transform: "translateY(0)" },
-        },
-        fillBar: {
-          to: { width: "100%" },
-        },
-        scrollHint: {
-          "0%": { left: "-100%" },
-          "60%, 100%": { left: "100%" },
-        },
+      letterSpacing: {
+        tightest: "-0.04em",
       },
     },
   },

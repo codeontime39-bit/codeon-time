@@ -1,92 +1,123 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import gsap from "gsap";
 
 export default function Hero() {
-  const comp = useRef<HTMLElement>(null);
+  const headlineRef = useRef<HTMLHeadingElement>(null);
 
   useEffect(() => {
-    let ctx = gsap.context(() => {
-      const tl = gsap.timeline({ delay: 1.5 });
-      
-      tl.to(".hero-tag", { opacity: 1, duration: 1 })
-        .fromTo(
-          ".word",
-          { yPercent: 120, rotationZ: 3 },
-          { yPercent: 0, rotationZ: 0, duration: 1.2, stagger: 0.1, ease: "power4.out" },
-          "-=0.7"
-        )
-        .to(".hero-bottom", { opacity: 1, duration: 1 }, "-=0.6");
-    }, comp);
-    
-    return () => ctx.revert();
+    if (headlineRef.current) {
+      const lines = headlineRef.current.querySelectorAll(".reveal-line");
+      lines.forEach((line, i) => {
+        setTimeout(() => line.classList.add("visible"), 200 + i * 150);
+      });
+    }
   }, []);
 
   return (
-    <section className="min-h-screen px-8 pt-[140px] pb-20 flex flex-col justify-between relative" ref={comp}>
-      <div className="hero-tag opacity-0 text-[12px] tracking-[0.1em] uppercase text-muted flex items-center gap-3">
-        <span className="w-7 h-px bg-muted" />
-        Available 24/7
+    <section className="relative min-h-screen pt-32 pb-20 overflow-hidden">
+      {/* Decorative grid lines */}
+      <div className="absolute inset-0 pointer-events-none opacity-[0.05]">
+        <div className="absolute top-0 left-1/4 w-px h-full bg-ink" />
+        <div className="absolute top-0 left-1/2 w-px h-full bg-ink" />
+        <div className="absolute top-0 left-3/4 w-px h-full bg-ink" />
       </div>
 
-      <h1 className="font-serif font-normal text-[clamp(56px,12vw,220px)] leading-[0.92] tracking-[-0.025em] mt-8">
-        <span className="hero-line block overflow-hidden pb-1">
-          <span className="word inline-block origin-bottom-left">Code,</span>{" "}
-          <span className="word inline-block origin-bottom-left">delivered</span>
-        </span>
-        <span className="hero-line block overflow-hidden pb-1">
-          <span className="word inline-block origin-bottom-left">
-            <em className="italic">on time.</em>
-          </span>
-        </span>
-      </h1>
+      <div className="relative max-w-[1600px] mx-auto px-8 z-10">
+        {/* Top meta row */}
+        <div className="grid grid-cols-12 gap-6 mb-16 md:mb-24 fade-up visible">
+          <div className="col-span-12 md:col-span-3">
+            <span className="font-mono text-[10px] tracking-[0.3em] uppercase text-ink/60">
+              Studio · Est. 2026
+            </span>
+          </div>
+          <div className="col-span-12 md:col-span-4 md:col-start-9 md:text-right">
+            <span className="font-mono text-[10px] tracking-[0.3em] uppercase text-ink/60">
+              ◉ Available — Booking Q3
+            </span>
+          </div>
+        </div>
 
-      <div className="hero-bottom opacity-0 grid md:grid-cols-3 gap-8 items-end mt-20">
-        <div>
-          <div className="text-[11px] tracking-[0.1em] uppercase text-muted mb-1.5">
-            The studio
-          </div>
-          <div className="text-sm">
-            An independent studio creating 
-            <br />
-            refined digital experiences.
-          </div>
-        </div>
-        <div>
-          <div className="text-[11px] tracking-[0.1em] uppercase text-muted mb-1.5">
-            Founded
-          </div>
-          <div className="text-sm">
-            2025 - India
-            <br />
-            Working remote, working global.
-          </div>
-        </div>
-        <div className="text-[11px] tracking-[0.15em] uppercase text-muted flex items-center gap-3 md:justify-end">
-          Scroll
-          <span className="inline-block w-9 h-px bg-current relative overflow-hidden">
-            <span
-              className="absolute top-0 w-full h-full bg-ink"
-              style={{ animation: "scrollHint 2.4s infinite", left: "-100%" }}
-            />
+        {/* Main headline */}
+        <h1
+          ref={headlineRef}
+          className="font-serif font-normal leading-[0.92] tracking-tightest text-ink"
+          style={{ fontSize: "clamp(56px, 11vw, 200px)" }}
+        >
+          <span className="reveal-line">
+            <span>Three colours.</span>
           </span>
+          <span className="reveal-line">
+            <span className="italic">One studio.</span>
+          </span>
+          <span className="reveal-line">
+            <span>
+              Built <span className="text-electric italic">on time.</span>
+            </span>
+          </span>
+        </h1>
+
+        {/* Bottom row */}
+        <div className="grid grid-cols-12 gap-6 mt-16 md:mt-28 items-end">
+          {/* Left intro */}
+          <div className="col-span-12 md:col-span-5 fade-up" style={{ transitionDelay: "0.7s" }}>
+            <p className="text-lg md:text-xl leading-relaxed text-ink/75 max-w-md">
+              Blue Black Beige is a small studio working at the intersection
+              of design and engineering. We build digital products with
+              restraint — and ship them when promised.
+            </p>
+          </div>
+
+          {/* Center spacer */}
+          <div className="hidden md:block md:col-span-2" />
+
+          {/* Right meta + CTAs */}
+          <div className="col-span-12 md:col-span-5 fade-up" style={{ transitionDelay: "0.9s" }}>
+            <div className="grid grid-cols-3 gap-6 mb-8 pb-8 border-b border-ink/15">
+              <div>
+                <div className="font-mono text-[9px] tracking-[0.2em] uppercase text-ink/60 mb-2">
+                  Founded
+                </div>
+                <div className="font-serif text-2xl text-ink">2026</div>
+              </div>
+              <div>
+                <div className="font-mono text-[9px] tracking-[0.2em] uppercase text-ink/60 mb-2">
+                  Based
+                </div>
+                <div className="font-serif text-2xl text-ink">BLR</div>
+              </div>
+              <div>
+                <div className="font-mono text-[9px] tracking-[0.2em] uppercase text-ink/60 mb-2">
+                  Team
+                </div>
+                <div className="font-serif text-2xl text-ink">02</div>
+              </div>
+            </div>
+
+            <div className="flex flex-wrap gap-3">
+              <a
+                href="#contact"
+                className="inline-flex items-center gap-3 px-7 py-4 bg-ink text-beige text-[12px] tracking-[0.15em] uppercase font-medium hover:bg-electric transition-colors duration-500"
+              >
+                <span>Start a project</span>
+                <span className="text-base leading-none">→</span>
+              </a>
+              <a
+                href="#work"
+                className="inline-flex items-center gap-3 px-7 py-4 border border-ink text-ink text-[12px] tracking-[0.15em] uppercase font-medium hover:bg-ink hover:text-beige transition-all duration-500"
+              >
+                <span>See work</span>
+              </a>
+            </div>
+          </div>
         </div>
       </div>
 
-      <style jsx>{`
-        .reg-sup {
-          font-family: var(--font-inter), sans-serif;
-          font-size: 0.18em;
-          font-style: normal;
-          vertical-align: top;
-          margin-left: 0.1em;
-          line-height: 1;
-          font-weight: 400;
-          top: 0.5em;
-          position: relative;
-        }
-      `}</style>
+      {/* Scroll indicator */}
+      <div className="absolute bottom-8 left-8 hidden md:flex items-center gap-3 font-mono text-[10px] tracking-[0.25em] uppercase text-ink/60">
+        <div className="w-px h-12 bg-ink/30" />
+        <span>Scroll</span>
+      </div>
     </section>
   );
 }

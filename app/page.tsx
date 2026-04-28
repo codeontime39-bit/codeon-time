@@ -13,7 +13,6 @@ import SmoothScroll from "@/components/SmoothScroll";
 export default function Home() {
   return (
     <>
-      <div className="noise-overlay" />
       <Loader />
       <Cursor />
       <SmoothScroll />

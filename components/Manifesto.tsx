@@ -1,39 +1,33 @@
-"use client";
-
-import { useEffect, useRef } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
 const principles = [
   {
     num: "01",
     title: "Excellent, not just good",
     italic: "Excellent,",
-    body: "Acceptable isn't the goal. Every line, every spacing decision, every animation gets the same scrutiny - even if no one else would notice.",
+    body: "Acceptable isn't the goal. Every line, every spacing decision, every animation gets the same scrutiny — even if no one would notice.",
   },
   {
     num: "02",
     title: "Challenge welcome",
     italic: "welcome",
-    body: "Ambitious briefs energize us. Hand us the problem you've been told is unsolvable and we'll find the angle.",
+    body: "Ambitious briefs energise us. Hand us the problem you've been told is unsolvable and we'll find the angle.",
   },
   {
     num: "03",
     title: "No time to lose",
     italic: "time",
-    body: "Your time is valuable. So is ours. We won't promise the impossible - but what we promise, we deliver, on the day we said we would.",
+    body: "Your time is valuable. So is ours. We won't promise the impossible — but what we promise, we deliver, on the day we said we would.",
   },
   {
     num: "04",
     title: "It belongs to you",
     italic: "belongs",
-    body: "You own everything we make for you - code, design, components, ideas. No lock-ins, no proprietary middleware. Your independence comes first.",
+    body: "You own everything we make for you — code, design, components, ideas. No lock-ins, no proprietary middleware. Your independence comes first.",
   },
   {
     num: "05",
     title: "All is said",
     italic: "said",
-    body: "Honest collaboration means anyone - you, us, your team - can speak to anything at any time. All ideas are welcome. The best one wins.",
+    body: "Honest collaboration means anyone — you, us, your team — can speak to anything at any time. All ideas welcome. The best one wins.",
   },
   {
     num: "06",
@@ -56,65 +50,59 @@ function formatTitle(title: string, italic: string) {
 }
 
 export default function Manifesto() {
-  const container = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
-    let ctx = gsap.context(() => {
-      const blocks = gsap.utils.toArray(".principle-block");
-      
-      gsap.fromTo(
-        blocks as HTMLElement[],
-        { y: 80, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 1.2,
-          stagger: 0.15,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: container.current,
-            start: "top 75%",
-          },
-        }
-      );
-    }, container);
-
-    return () => ctx.revert();
-  }, []);
-
   return (
-    <section id="process" className="px-8 py-32" ref={container}>
-      <div className="grid md:grid-cols-[100px_1fr_1fr] gap-8 mb-20 principle-block">
-        <div className="text-[12px] tracking-[0.1em] text-muted">03 - Approach</div>
-        <div className="text-[12px] tracking-[0.1em] uppercase text-muted">
-          How we work
+    <section id="approach" className="relative py-32 md:py-48 bg-beige-light border-y border-ink/15 fade-up">
+      <div className="max-w-[1600px] mx-auto px-8">
+        {/* Header */}
+        <div className="grid grid-cols-12 gap-6 mb-20">
+          <div className="col-span-12 md:col-span-3">
+            <div className="flex items-center gap-3 font-mono text-[10px] tracking-[0.3em] uppercase text-ink/60">
+              <span className="w-8 h-px bg-electric" />
+              03 — Approach
+            </div>
+          </div>
+          <div className="col-span-12 md:col-span-9">
+            <h2
+              className="font-serif font-normal leading-[0.95] tracking-tightest text-ink"
+              style={{ fontSize: "clamp(40px, 7vw, 120px)" }}
+            >
+              Six things we <span className="italic text-electric">believe.</span>
+            </h2>
+          </div>
         </div>
-        <h2 className="font-serif font-normal text-[clamp(40px,6vw,88px)] leading-[0.98] tracking-[-0.025em]">
-          Six things
-          <br />
-          we <em className="italic">believe.</em>
-        </h2>
-      </div>
 
-      <div className="grid md:grid-cols-[100px_1fr] gap-8">
-        <div className="hidden md:block" />
-        <div className="grid md:grid-cols-2 gap-x-12 gap-y-15" style={{ rowGap: "60px" }}>
-          {principles.map((p) => (
-            <div key={p.num} className="pt-6 border-t border-line principle-block">
-              <div className="text-[12px] text-muted mb-6">{p.num}</div>
-              <h3 className="font-serif text-3xl leading-tight tracking-[-0.02em] mb-3 font-normal">
+        {/* Principles grid */}
+        <div className="grid md:grid-cols-2 gap-x-12 gap-y-16">
+          {principles.map((p, i) => (
+            <div
+              key={p.num}
+              className="pt-6 border-t border-ink/30"
+            >
+              <div className="flex items-center gap-3 mb-6">
+                <span
+                  className={`w-2 h-2 ${
+                    i % 3 === 0
+                      ? "bg-electric"
+                      : i % 3 === 1
+                      ? "bg-ink"
+                      : "bg-beige-dark border border-ink"
+                  }`}
+                />
+                <span className="font-mono text-[11px] tracking-[0.2em] text-ink/60">
+                  {p.num}
+                </span>
+              </div>
+              <h3 className="font-serif text-3xl md:text-4xl leading-tight tracking-tightest mb-3 text-ink">
                 {formatTitle(p.title, p.italic)}
               </h3>
-              <p className="text-[15px] leading-[1.5] text-muted">
+              <p className="text-[15px] leading-[1.55] text-ink/70 max-w-md">
                 {p.body}
                 {p.num === "06" && (
                   <>
                     {" "}
                     <a
                       href="#contact"
-                      className="text-ink underline"
-                      data-cursor="hover"
+                      className="link-line text-ink underline-offset-4"
                     >
                       Introduce us to your project →
                     </a>

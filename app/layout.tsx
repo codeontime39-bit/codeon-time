@@ -1,35 +1,40 @@
 import type { Metadata } from "next";
-import { Inter, Instrument_Serif } from "next/font/google";
+import { Inter, Instrument_Serif, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600"],
-  variable: "--font-inter",
+  variable: "--font-sans",
 });
 
-const instrument = Instrument_Serif({
+const serif = Instrument_Serif({
   subsets: ["latin"],
   weight: "400",
   style: ["normal", "italic"],
-  variable: "--font-instrument",
+  variable: "--font-serif",
+});
+
+const mono = JetBrains_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500"],
+  variable: "--font-mono",
 });
 
 export const metadata: Metadata = {
-  title: "Code On Time - Freelance studio",
+  title: "Blue Black Beige — Design & development studio",
   description:
-    "A two-person freelance studio building digital products that ship on time. Web design, development, and design systems.",
+    "A small studio working at the intersection of design and engineering. We build digital products with care, on time, every time.",
   keywords: [
-    "freelance web development",
     "design studio",
+    "freelance development",
     "Next.js",
-    "React",
+    "branding",
     "Bengaluru",
   ],
   openGraph: {
-    title: "Code On Time - Freelance studio",
-    description:
-      "We build digital products that ship - clean, fast, and on time.",
+    title: "Blue Black Beige",
+    description: "A small studio. Design and development, on time, every time.",
     type: "website",
   },
 };
@@ -40,11 +45,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${inter.variable} ${instrument.variable}`}>
-      <body className="font-sans">
-        <div className="noise-overlay" />
-        {children}
-      </body>
+    <html lang="en" className={`${inter.variable} ${serif.variable} ${mono.variable}`}>
+      <body className="font-sans">{children}</body>
     </html>
   );
 }
